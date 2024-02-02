@@ -6,7 +6,7 @@ public class Plane : MonoBehaviour
 {
     public List<Vector2> points;
     public float newPositionThreshhold = 0.2f;
-    public float speed = 1;
+    public float speed;
     public AnimationCurve landing;
     public float landingTimer;
     Vector2 lastPosition;
@@ -16,6 +16,10 @@ public class Plane : MonoBehaviour
 
     private void Start()
     {
+        transform.position = new Vector3 (Random.Range(-5f,5f), Random.Range(-5f,5f), 0);
+        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
+        speed = Random.Range(1f, 3f);
+
         lineRenderer = GetComponent<LineRenderer>();
         rigibody = GetComponent<Rigidbody2D>();
 
