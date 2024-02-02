@@ -5,6 +5,7 @@ using UnityEngine;
 public class Plane : MonoBehaviour
 {
     public List<Vector2> points;
+    public GameObject prefab;
     public float newPositionThreshhold = 0.2f;
     public float speed;
     public AnimationCurve landing;
@@ -13,6 +14,7 @@ public class Plane : MonoBehaviour
     Vector2 currentPosition;
     LineRenderer lineRenderer;
     Rigidbody2D rigibody;
+    SpriteRenderer spriteRenderer;
 
     private void Start()
     {
@@ -22,6 +24,7 @@ public class Plane : MonoBehaviour
 
         lineRenderer = GetComponent<LineRenderer>();
         rigibody = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         lineRenderer.positionCount = 1;
         lineRenderer.SetPosition(0,transform.position);
@@ -87,4 +90,14 @@ public class Plane : MonoBehaviour
         }
 
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        spriteRenderer.color = Color.red;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        spriteRenderer.color = Color.white;
+    }
+
 }
