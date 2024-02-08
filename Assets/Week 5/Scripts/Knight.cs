@@ -56,6 +56,7 @@ public class Knight : MonoBehaviour
     {
         if (dead) return;
         clickingSelf = true;
+        SendMessage("takeDamage", 1);
         takeDamage(1);
         healthBar.takeDamage(1);
     }
