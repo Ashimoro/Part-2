@@ -38,6 +38,20 @@ public class Knight : MonoBehaviour
             movement = Vector2.zero;
         }
         rigibody.MovePosition(rigibody.position + movement.normalized * speed * Time.deltaTime);
+
+        if (movement.x < 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+
+        if (Input.GetMouseButton(1))
+        {
+            animator.SetTrigger("Attack");
+        }
     }
 
     void Update()
