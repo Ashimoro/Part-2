@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         rigibody = GetComponent<Rigidbody2D>();
+        rigibody.position = new Vector2(5, Random.Range(-5,5));
     }
 
     private void FixedUpdate()
