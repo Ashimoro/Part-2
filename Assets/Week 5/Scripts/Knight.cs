@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class Knight : MonoBehaviour
@@ -58,7 +59,7 @@ public class Knight : MonoBehaviour
     {
         if (dead) return;
 
-        if (Input.GetMouseButtonDown(0) && !clickingSelf)
+        if (Input.GetMouseButtonDown(0) && !clickingSelf && !EventSystem.current.IsPointerOverGameObject())
         {
             destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
