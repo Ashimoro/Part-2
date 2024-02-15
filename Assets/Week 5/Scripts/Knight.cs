@@ -25,7 +25,9 @@ public class Knight : MonoBehaviour
     {
         rigibody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        health = maxHealth;
+        
+        health = PlayerPrefs.GetFloat("Current Health", maxHealth);
+
     }
 
     private void FixedUpdate()
@@ -72,8 +74,7 @@ public class Knight : MonoBehaviour
         if (dead) return;
         clickingSelf = true;
         SendMessage("takeDamage", 1);
-        takeDamage(1);
-        healthBar.takeDamage(1);
+
     }
     private void OnMouseUp()
     {
@@ -93,5 +94,9 @@ public class Knight : MonoBehaviour
             dead = false;
             animator.SetTrigger("TakeDamage");
         }
+
+            PlayerPrefs.SetFloat("Current Health", health);
+
     }
+
 }
