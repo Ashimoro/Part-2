@@ -27,7 +27,7 @@ public class Knight : MonoBehaviour
         animator = GetComponent<Animator>();
         
         health = PlayerPrefs.GetFloat("Current Health", maxHealth);
-
+        SendMessage("UpdateHealth", health);
     }
 
     private void FixedUpdate()
