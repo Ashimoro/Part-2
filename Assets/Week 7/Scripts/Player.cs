@@ -8,8 +8,6 @@ using Unity.VisualScripting;
 public class Player : MonoBehaviour
 {
   SpriteRenderer spriteRenderer;
-    public Color selectColor;
-    public Color unSelectColor;
     bool selected = false;
     bool self = false;
 
@@ -35,11 +33,11 @@ public class Player : MonoBehaviour
     {
         if (selected)
         {
-            spriteRenderer.color = selectColor;
+            spriteRenderer.color = Color.green ;
         }
         else
         {
-            spriteRenderer.color = unSelectColor;
+            spriteRenderer.color = Color.red;
         }
     }
 
