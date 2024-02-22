@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
 
     public void OnMouseDown()
     {
-        Selected(true);
+        Controller.SetSelectedPlayer(this);
     }
 
 
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     {
         if (selected)
         {
-            spriteRenderer.color = Color.green ;
+            spriteRenderer.color = Color.green;
         }
         else
         {

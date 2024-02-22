@@ -1,0 +1,23 @@
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Controller : MonoBehaviour
+{
+    // Start is called before the first frame update
+public static Player SelectedPlayer { get; private set; }
+    public static void SetSelectedPlayer(Player player)
+    {
+
+
+        if (SelectedPlayer != null)
+        {
+            SelectedPlayer.Selected(false);
+        }
+
+        SelectedPlayer = player;
+        SelectedPlayer.Selected(true);
+    }
+}
