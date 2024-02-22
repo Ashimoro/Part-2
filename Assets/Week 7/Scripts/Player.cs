@@ -11,10 +11,14 @@ public class Player : MonoBehaviour
     bool selected = false;
     bool self = false;
 
+    Rigidbody2D rigibody;
+
+    public float speed = 100;
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         Selected(false);
+        rigibody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -28,6 +32,10 @@ public class Player : MonoBehaviour
         Controller.SetSelectedPlayer(this);
     }
 
+    public void Move(Vector2 direction)
+    {
+        rigibody.AddForce(direction * speed);
+    }
 
     public void Selected(bool selected)
     {
