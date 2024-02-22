@@ -10,14 +10,18 @@ public class Character : MonoBehaviour
 {
     public float speed = 3;
     public float health = 3;
+    float moveTime;
 
     bool dead = false;
 
     public Animator animator;
+    public AnimationCurve curve;
     Rigidbody2D rigibody;
 
     Vector2 movement;
     Vector2 destination;
+    Vector2 startPosition;
+    Vector2 endPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -32,9 +36,11 @@ public class Character : MonoBehaviour
     void Update()
     {
         if (dead) return;
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
+            startPosition = transform.position;
             destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            moveTime = 0;
         }
 
         movement = destination - (Vector2)transform.position;
@@ -47,13 +53,19 @@ public class Character : MonoBehaviour
     private void FixedUpdate()
     {
         if (dead) return;
+       
+
         if (movement.magnitude < 0.1f)
         {
             movement = Vector2.zero;
         }
         else
         {
-            rigibody.MovePosition(rigibody.position + movement.normalized * speed * Time.deltaTime);
+            moveTime += Time.deltaTime;
+            float curveMove = curve.Evaluate(moveTime);
+            endPosition = Vector2.Lerp(startPosition, destination, curveMove);
+
+            rigibody.MovePosition(endPosition);
         }
 
     }
