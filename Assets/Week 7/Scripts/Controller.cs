@@ -3,19 +3,22 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Controller : MonoBehaviour
 {
 
     float force;
     public float maxForce = 1f;
+    public static int score = 0;
 
     Vector2 direction;
 
     public Slider slider;
+    public TextMeshProUGUI scoreUI;
 
     // Start is called before the first frame update
-public static Player SelectedPlayer { get; private set; }
+    public static Player SelectedPlayer { get; private set; }
     public static void SetSelectedPlayer(Player player)
     {
 
@@ -43,6 +46,8 @@ public static Player SelectedPlayer { get; private set; }
 
     public void Update()
     {
+        scoreUI.text = "Score: " + score;
+
         if (SelectedPlayer == null) return;
 
         if(Input.GetKeyDown(KeyCode.Space)) 
@@ -64,5 +69,7 @@ public static Player SelectedPlayer { get; private set; }
         {
             direction = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)SelectedPlayer.transform.position).normalized * force;
         }
+
+
     }
 }
