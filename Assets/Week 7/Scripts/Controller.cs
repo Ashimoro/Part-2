@@ -62,7 +62,7 @@ public static Player SelectedPlayer { get; private set; }
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            direction = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition)) - ((Vector2)SelectedPlayer.transform.position).normalized * force;
+            direction = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)SelectedPlayer.transform.position).normalized * force;
         }
     }
 }
